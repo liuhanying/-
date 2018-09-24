@@ -138,11 +138,13 @@
 
           <!-- 蒙板  箭头指示器 -->
           <div class="mask_left_box">
+            <div class="mask_left_top"></div>
             <div class="mask_left">
               <div class="arrows_left"></div>
             </div>
           </div>
           <div class="mask_right_box">
+            <div class="mask_right_top"></div>
             <div class="mask_right">
               <div class="arrows_right"></div>
             </div>
@@ -192,18 +194,19 @@
       </div>
       <!-- 果蔬导航 -->
       <div class="food_material_nav_box">
-        <a class="food_material_nav_item" href="#">水果</a>
-        <a class="food_material_nav_item" href="#">蔬菜</a>
-        <a class="food_material_nav_item" href="#">五谷</a>
-        <a class="food_material_nav_item" href="#">生鲜</a>
+        <a class="food_material_nav_item food_material_nav_item1" href="#" @mouseenter="guoshu($event,0)">水果</a>
+        <a class="food_material_nav_item" href="#" @mouseenter="guoshu($event,1)">蔬菜</a>
+        <a class="food_material_nav_item" href="#" @mouseenter="guoshu($event,2)">五谷</a>
+        <a class="food_material_nav_item" href="#" @mouseenter="guoshu($event,3)">生鲜</a>
       </div>
 
       <!-- 果蔬内容 -->
       <div class="food_material_content_box">
-        <div class="food_material_item" v-for="item in 8" :key="item">
+        <div class="food_material_item" v-for="(item,index) in food_material_data[index1].item" :key="index" :index="index">
+          <img class="food_material_img" :src="item.item_icon" alt="">
           <div class="food_material_item_bottom_box">
             <div class="food_material_item_bottom_icon"></div>
-            <span class="food_material_item_bottom_name">葡萄</span>
+            <span class="food_material_item_bottom_name">{{item.item_name}}</span>
           </div>
         </div>
       </div>
@@ -470,7 +473,192 @@ export default {
   name: "HomeBar",
 
   data() {
-    return {};
+    return {
+      index:"",
+      index1:0,
+      food_material_data: [
+        {
+          name: "水果",
+          item: [
+            {
+              item_name: "梨",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/35af0f27e89091fb1126f81cdb6ad5c4_150x150.jpg"
+            },
+            {
+              item_name: "香蕉",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/cbe31e4ef6176df562054b6b5297ca50_150x150.jpg"
+            },
+            {
+              item_name: "苹果",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/96fa7d7510bd0da37ea9bb7960f163d0_150x150.jpg"
+            },
+            {
+              item_name: "葡萄",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110822/b37011b5eaca0be8e20588c128af0fef_150x150.jpg"
+            },
+            {
+              item_name: "哈密瓜",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110825/de95b24631ef8f0022886a5c8d8ffe31_150x150.jpg"
+            },
+            {
+              item_name: "西瓜",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110713/0ff549e81061928347d77e12fbb9edcf_150x150.jpg"
+            },
+            {
+              item_name: "橙",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/dacf1e18c99c4fe2f056f0c8f3aacbce_150x150.jpg"
+            },
+            {
+              item_name: "石榴",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20111215/f386af0507fcade2e84cf636ab832d93_150x150.jpg"
+            }
+          ]
+        },
+        {
+          name: "蔬菜",
+          item: [
+            {
+              item_name: "西红柿",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20111214/a82d115d88dd46598f4333777582469c_150x150.jpg"
+            },
+            {
+              item_name: "空心菜",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110706/47a6f18540ca3a358c2a0619cca2640e_150x150.jpg"
+            },
+            {
+              item_name: "藕",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/faa37fc1ad02dafb198a73bccf2c68c5_150x150.jpg"
+            },
+            {
+              item_name: "茄子",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110706/46ff26140cddcba66a59ef101bb7a4a0_150x150.jpg"
+            },
+            {
+              item_name: "豇豆",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20140630/7f0d129d13145ff6c28e4cb1aec80bc8_150x150.jpg"
+            },
+            {
+              item_name: "冬瓜",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110914/d2afc51c05cf539c3bdea09f68a12abe_150x150.jpg"
+            },
+            {
+              item_name: "杏鲍菇",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20121126/b3f66004d9644644de25e00ee84c91c3_150x150.jpg"
+            },
+            {
+              item_name: "黄秋葵",
+              item_icon:
+                "http://s1.st.meishij.net/shicaiimg/228/shicai228_150x150.jpg"
+            }
+          ]
+        },
+        {
+          name: "五谷",
+          item: [
+            {
+              item_name: "玉米(鲜)",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20111125/3eb346efc8d0a9fca2d26ae0a6715d8d_150x150.jpg"
+            },
+            {
+              item_name: "毛豆",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20140729/064ee845c82df1cfd19e00b8e5aeaa0c_150x150.jpg"
+            },
+            {
+              item_name: "核桃",
+              item_icon:
+                "http://s1.st.meishij.net/shicaiimg/133/shicai633_150x150.jpg"
+            },
+            {
+              item_name: "花生",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/94b32e81e021d4a23d81fb0126fcf473_150x150.jpg"
+            },
+            {
+              item_name: "板栗",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20111019/638aa109b78183ae2faeb738ebfce1b8_150x150.jpg"
+            },
+            {
+              item_name: "赤小豆",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110715/8f690769e15fd26ad5184dbfd0140052_150x150.jpg"
+            },
+            {
+              item_name: "薏米",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110715/1fc5bb018fadda5c7083d61e1a27ab2a_150x150.jpg"
+            },
+            {
+              item_name: "燕麦",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20150228/5bb1dda5bfa20c2772d81781c4a23f31_150x150.jpg"
+            }
+          ]
+        },
+        {
+          name: "生鲜",
+          item: [
+            {
+              item_name: "梭子蟹",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20130905/d25e6391db69afbaa8a71cdc16f18d3f_150x150.jpg"
+            },
+            {
+              item_name: "鲍鱼",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20150731/1c23ebbee0de4646782cbb98b34d3cc9_150x150.jpg"
+            },
+            {
+              item_name: "鸭",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20120703/1af59099f56158ef054e6ee5888acedf_150x150.jpg"
+            },
+            {
+              item_name: "草鱼",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20170330/96da0e84e46ee56abbedb73a5457a716_150x150.jpg"
+            },
+            {
+              item_name: "牛肉",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20111019/a72016598763ceb63763b2f0efb75434_150x150.jpg"
+            },
+            {
+              item_name: "鱿鱼",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110822/020d8b27b4c8449c75bc0b6cafa4b626_150x150.jpg"
+            },
+            {
+              item_name: "扇贝",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20150820/f07d734a3e755193ae59f25ce1a03e93_150x150.jpg"
+            },
+            {
+              item_name: "鸡腿",
+              item_icon:
+                "http://s1.ig.meishij.net/p/20110914/f8e9734997cee28795a756df6fc8e526_150x150.jpg"
+            }
+          ]
+        }
+      ]
+    };
   },
 
   mounted() {
@@ -577,7 +765,7 @@ export default {
         lastIndex = royCarouselIndex;
 
         royCarouselLoop();
-      }, 2000);
+      }, 4000);
     }
 
     royCarouselLoop();
@@ -664,26 +852,7 @@ export default {
 
     // ..................................
 
-    // 食材
-    var food_nav_items = $(".food_material_nav_item");
-    food_nav_items[0].style.backgroundColor = "#ff3232";
-    food_nav_items[0].style.color = "#fff";
-
-    for (var i = 0; i < food_nav_items.length; i++) {
-      var lastNumber = 0;
-      var ofood_item = food_nav_items[i];
-      ofood_item.indexNumber = i;
-      $(ofood_item).mouseenter(e => {
-        var last_food_item = food_nav_items[lastNumber];
-        last_food_item.style.color = "#666";
-        last_food_item.style.backgroundColor = "#fff";
-
-        var x = e.target.indexNumber;
-        e.target.style.color = "#fff";
-        e.target.style.backgroundColor = "#ff3232";
-        lastNumber = x;
-      });
-    }
+    
 
     // 菜谱轮播
     // return
@@ -906,6 +1075,18 @@ export default {
       $(e.target)
         .siblings()
         .removeClass("text_big");
+    },
+    guoshu(e,paream){
+        this.index1 = paream
+
+        $(e.target).css({
+          backgroundColor:"#ff3232",
+          color:"#fff"
+        })
+        $(e.target).siblings().css({
+          backgroundColor:"#fff",
+          color:"#666"
+        })
     }
   }
 };
@@ -963,9 +1144,11 @@ export default {
             .carousel1_item_img {
               width: 330px;
               height: 330px;
-              background-image: url("http://s1.ig.meishij.net/p/20180907/f662a69268150b71046cd1961667e658.jpg");
+              background-image: url("http://s1.ig.meishij.net/p/20180914/e042e495021c1ee7b24ec863c213e799.jpg");
               display: flex;
               align-items: flex-end;
+              background-position: center center;
+              background-size: cover;
 
               .carousel1_item_img_name {
                 width: 100%;
@@ -998,16 +1181,25 @@ export default {
 
       .mask_left_box {
         width: 1980px;
-        height: 330px;
-        background-color: rgba(225, 225, 225, 0.8);
+        height: 450px;
+        
         position: absolute;
-        top: 120px;
+        top: 0px;
         left: 0;
+
+
+        .mask_left_top{
+          width: 100%;
+          height: 120px;
+          background-color: #fae8c8;
+          // box-shadow: rgba(0, 0, 0, 0.3) 10px 0px 10px 0px inset;
+        }
 
         .mask_left {
           width: 100%;
-          height: 100%;
+          height: 330px;
           position: relative;
+          background-color: rgba(225, 225, 225, 0.8);
 
           .arrows_left {
             width: 173px;
@@ -1023,15 +1215,24 @@ export default {
 
       .mask_right_box {
         width: 1980px;
-        height: 330px;
-        background-color: rgba(225, 225, 225, 0.8);
+        height: 450px;
+        
         position: absolute;
-        top: 120px;
+        top: 0px;
         right: 0;
+
+        .mask_right_top{
+          width: 100%;
+          height: 120px;
+          background-color: #fae8c8;
+          
+
+        }
 
         .mask_right {
           width: 100%;
-          height: 100%;
+          height: 330px;
+          background-color: rgba(225, 225, 225, 0.8);
           position: relative;
 
           .arrows_right {
@@ -1130,10 +1331,16 @@ export default {
     box-sizing: border-box;
 
     .food_material_nav_item {
+      // display: inline-block;
       padding: 5px 15px;
       color: #666;
       line-height: 60px;
       font-size: 14px;
+      // background-color: red;
+    }
+    .food_material_nav_item1{
+      color: #fff;
+      background-color: #ff3232;
     }
 
     // .food_material_nav_item:hover {
@@ -1153,10 +1360,18 @@ export default {
     .food_material_item {
       width: 117px;
       height: 117px;
-      background-image: url("http://s1.ig.meishij.net/p/20110822/b37011b5eaca0be8e20588c128af0fef_150x150.jpg");
+      // background-image: url("http://s1.ig.meishij.net/p/20110822/b37011b5eaca0be8e20588c128af0fef_150x150.jpg");
       margin-right: 1px;
       display: flex;
       align-items: flex-end;
+      position: relative;
+
+      .food_material_img{
+        // position: absolute;
+        width: 100%;
+        height: 100%;
+        // z-index: 0;
+      }
 
       .food_material_item_bottom_box {
         width: 100%;
@@ -1164,6 +1379,8 @@ export default {
         background-color: #ffffffce;
         display: flex;
         align-items: center;
+        position: absolute;
+        bottom: 0;
 
         .food_material_item_bottom_icon {
           width: 10px;

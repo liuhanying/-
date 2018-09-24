@@ -455,6 +455,8 @@ export default {
 
 .header_nav_box {
   box-shadow: rgba(0, 0, 0, 0.3) 10px 0px 10px 0px;
+  z-index: 10;
+  position: relative;
 
   .center {
     display: flex;
