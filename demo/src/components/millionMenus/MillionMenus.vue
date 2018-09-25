@@ -89,8 +89,8 @@ export default {};
       background-color: rgba(0, 0, 0, 0);
 
       .top_nav_item:hover {
-        background-color: #fafafa;
-        color:#ff3232;
+        background-color: #fafafa !important;
+        color:#ff3232 !important;
       }
 
       .top_nav_item {
